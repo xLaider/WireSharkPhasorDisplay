@@ -1,6 +1,8 @@
 ﻿using GMap.NET;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
+using LiveCharts;
+using LiveCharts.Wpf;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using PcaPNGTestV2;
@@ -29,7 +31,7 @@ namespace WFA
         private Thread thread1;
         private string selectedStation = string.Empty;
         private string selectedPhasor = string.Empty;
-        TimeSpan ts;
+        TimeSpan ts = new TimeSpan (10000);
         public Form1()
         {
             InitializeComponent();
@@ -47,6 +49,8 @@ namespace WFA
         }
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            AngleChart.Series.Clear();
+            AnalogChart.Series.Clear();
             if (thread != null)
             {
                 thread.Abort();
@@ -76,8 +80,10 @@ namespace WFA
         }
         private void runSimulation()
         {
+            int counter = 0;
             for (int i = 0; i < packetsToDisplay.Count; i++)
             {
+                counter++;
                 if (packetsToDisplay[i].StationName == selectedStation)
                 {
                     var currentTime = DateTime.Now;
@@ -100,6 +106,27 @@ namespace WFA
                         }
                         textBox1.Text = (text);
                     }));
+                    if(counter > 25) { 
+                    AnalogChart.Invoke(new Action(delegate ()
+                    {
+                        foreach(var series in AnalogChart.Series){
+                            series.Values.Add(packetsToDisplay[i].Analogs.FirstOrDefault(x => x.Name == series.Title).Value);
+                            if(series.Values.Count == 50)
+                            series.Values.RemoveAt(0);
+                            counter = 0;
+                        }
+                    }));
+                    AngleChart.Invoke(new Action(delegate ()
+                        {
+                            foreach (var series in AngleChart.Series)
+                            {
+                                series.Values.Add(packetsToDisplay[i].Phasors.FirstOrDefault(x => x.Name == series.Title).Angle);
+                                if (series.Values.Count == 50)
+                                    series.Values.RemoveAt(0);
+                                counter = 0;
+                            }
+                        }));
+                    }
                 }
                 
 
@@ -127,7 +154,29 @@ namespace WFA
             {
                 selectedPhasor = phasorsList.SelectedItem.ToString();
             }
-            
+            SeriesCollection series = new SeriesCollection();
+            SeriesCollection series2 = new SeriesCollection();
+            foreach (var analog in pcaPNGWorker.configrationFrames.FirstOrDefault(x => x.stationName == selectedStation).NamesOfAnalogs){
+                series.Add(
+                    new LineSeries
+                    {
+                        Title = analog,
+                        Values = new ChartValues<double> { }
+                    }
+                );
+            }
+            foreach (var phasor in pcaPNGWorker.configrationFrames.FirstOrDefault(x => x.stationName == selectedStation).NamesOfPhasors)
+            {
+                series2.Add(
+                    new LineSeries
+                    {
+                        Title = phasor,
+                        Values = new ChartValues<double> { }
+                    }
+                );
+            }
+            AnalogChart.Series.AddRange(series);
+            AngleChart.Series.AddRange(series2);
         }
 
         private async void btnSelectFile_Click(object sender, EventArgs e)

@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label1 = new System.Windows.Forms.Label();
@@ -46,6 +46,8 @@
             this.MainMap = new GMap.NET.WindowsForms.GMapControl();
             this.zoomOut = new System.Windows.Forms.Button();
             this.zoomIn = new System.Windows.Forms.Button();
+            this.AngleChart = new LiveCharts.WinForms.CartesianChart();
+            this.AnalogChart = new LiveCharts.WinForms.CartesianChart();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
@@ -53,7 +55,7 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(29, 179);
+            this.listBox1.Location = new System.Drawing.Point(29, 30);
             this.listBox1.Margin = new System.Windows.Forms.Padding(2);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(133, 121);
@@ -63,21 +65,21 @@
             // chart1
             // 
             this.chart1.BorderlineWidth = 15;
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(916, 12);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Polar;
-            series1.Legend = "Legend1";
-            series1.MarkerBorderWidth = 15;
-            series1.MarkerColor = System.Drawing.Color.Blue;
-            series1.MarkerSize = 15;
-            series1.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
-            series1.Name = "blue";
-            this.chart1.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Polar;
+            series2.Legend = "Legend1";
+            series2.MarkerBorderWidth = 15;
+            series2.MarkerColor = System.Drawing.Color.Blue;
+            series2.MarkerSize = 15;
+            series2.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series2.Name = "blue";
+            this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(393, 288);
             this.chart1.TabIndex = 1;
             this.chart1.Text = "chart1";
@@ -85,7 +87,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(26, 143);
+            this.label1.Location = new System.Drawing.Point(26, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(136, 13);
             this.label1.TabIndex = 2;
@@ -93,28 +95,28 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(934, 398);
+            this.textBox1.Location = new System.Drawing.Point(11, 399);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(298, 177);
+            this.textBox1.Size = new System.Drawing.Size(189, 177);
             this.textBox1.TabIndex = 3;
             // 
             // trackBar1
             // 
-            this.trackBar1.Location = new System.Drawing.Point(1002, 331);
+            this.trackBar1.Location = new System.Drawing.Point(11, 332);
             this.trackBar1.Margin = new System.Windows.Forms.Padding(2);
             this.trackBar1.Maximum = 2000;
-            this.trackBar1.Minimum = 50;
+            this.trackBar1.Minimum = 10;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(168, 45);
             this.trackBar1.TabIndex = 4;
-            this.trackBar1.Value = 50;
+            this.trackBar1.Value = 10;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(1040, 316);
+            this.label2.Location = new System.Drawing.Point(49, 317);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 13);
@@ -124,17 +126,17 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(966, 219);
+            this.label3.Location = new System.Drawing.Point(8, 364);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(32, 13);
             this.label3.TabIndex = 6;
-            this.label3.Text = "50ms";
+            this.label3.Text = "10ms";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(1108, 219);
+            this.label4.Location = new System.Drawing.Point(135, 364);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(44, 13);
@@ -144,7 +146,7 @@
             // phasorsList
             // 
             this.phasorsList.FormattingEnabled = true;
-            this.phasorsList.Location = new System.Drawing.Point(29, 350);
+            this.phasorsList.Location = new System.Drawing.Point(29, 179);
             this.phasorsList.Margin = new System.Windows.Forms.Padding(2);
             this.phasorsList.Name = "phasorsList";
             this.phasorsList.Size = new System.Drawing.Size(133, 121);
@@ -154,7 +156,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(26, 322);
+            this.label5.Location = new System.Drawing.Point(26, 155);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(136, 13);
             this.label5.TabIndex = 9;
@@ -162,7 +164,7 @@
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(29, 504);
+            this.btnStart.Location = new System.Drawing.Point(472, 550);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(133, 53);
             this.btnStart.TabIndex = 10;
@@ -172,9 +174,9 @@
             // 
             // btnSelectFile
             // 
-            this.btnSelectFile.Location = new System.Drawing.Point(29, 43);
+            this.btnSelectFile.Location = new System.Drawing.Point(218, 550);
             this.btnSelectFile.Name = "btnSelectFile";
-            this.btnSelectFile.Size = new System.Drawing.Size(93, 38);
+            this.btnSelectFile.Size = new System.Drawing.Size(119, 53);
             this.btnSelectFile.TabIndex = 11;
             this.btnSelectFile.TabStop = false;
             this.btnSelectFile.Text = "Wybierz plik";
@@ -189,7 +191,7 @@
             this.MainMap.GrayScaleMode = false;
             this.MainMap.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.MainMap.LevelsKeepInMemory = 5;
-            this.MainMap.Location = new System.Drawing.Point(218, 43);
+            this.MainMap.Location = new System.Drawing.Point(218, 12);
             this.MainMap.MarkersEnabled = true;
             this.MainMap.MaxZoom = 18;
             this.MainMap.MinZoom = 2;
@@ -228,11 +230,29 @@
             this.zoomIn.UseVisualStyleBackColor = true;
             this.zoomIn.Click += new System.EventHandler(this.zoomIn_Click);
             // 
+            // AngleChart
+            // 
+            this.AngleChart.Location = new System.Drawing.Point(916, 317);
+            this.AngleChart.Name = "AngleChart";
+            this.AngleChart.Size = new System.Drawing.Size(393, 126);
+            this.AngleChart.TabIndex = 15;
+            this.AngleChart.Text = "cartesianChart1";
+            // 
+            // AnalogChart
+            // 
+            this.AnalogChart.Location = new System.Drawing.Point(916, 464);
+            this.AnalogChart.Name = "AnalogChart";
+            this.AnalogChart.Size = new System.Drawing.Size(393, 126);
+            this.AnalogChart.TabIndex = 16;
+            this.AnalogChart.Text = "cartesianChart2";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1369, 632);
+            this.Controls.Add(this.AnalogChart);
+            this.Controls.Add(this.AngleChart);
             this.Controls.Add(this.zoomIn);
             this.Controls.Add(this.zoomOut);
             this.Controls.Add(this.MainMap);
@@ -276,6 +296,8 @@
         private GMap.NET.WindowsForms.GMapControl MainMap;
         private System.Windows.Forms.Button zoomOut;
         private System.Windows.Forms.Button zoomIn;
+        private LiveCharts.WinForms.CartesianChart AngleChart;
+        private LiveCharts.WinForms.CartesianChart AnalogChart;
     }
 }
 
